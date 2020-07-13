@@ -1,0 +1,14 @@
+###
+GET http://localhost:3000/vote
+
+###
+POST http://localhost:3000/vote
+Content-Type: application/json
+
+{
+    "user": "ovadia.shalom@gmail.com",
+    "vote": {
+        "repo": "https://github.com/facebook/react",
+        "name": "React"
+    }
+}
