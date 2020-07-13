@@ -27,8 +27,8 @@ app.use(
 createConnection()
   .then(async (connection) => {
     app.use("/vote", VoteRouter(connection));
-    app.listen(3000, () => {
-      console.log("Listening on port: " + 3000);
+    app.listen(process.env.PORT || 5000, () => {
+      console.log("Listening on port: " + 5000);
     });
   })
   .catch((error) => console.log(error));
