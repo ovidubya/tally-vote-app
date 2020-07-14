@@ -7,6 +7,8 @@ import session from "express-session";
 import cors from "cors";
 
 const app = express();
+console.log("what is OVADIA_TEST");
+console.log(process.env.OVADIA_TEST);
 
 app.use(
   cors({
@@ -45,8 +47,7 @@ createConnection()
       CREATE INDEX "IDX_session_expire" ON "session" ("expire");
     `);
     } catch (e) {
-      console.log("unable to create session table");
-      console.log(e);
+      console.log("Unable to create session table");
     }
 
     app.listen(process.env.PORT || 5000, () => {
