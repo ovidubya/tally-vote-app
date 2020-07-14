@@ -10,7 +10,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://romantic-shockley-9778b3.netlify.app",
+    origin: [
+      "https://boiling-reef-23922.herokuapp.com/tally",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );
