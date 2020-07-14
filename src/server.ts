@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express from "express";
 import { VoteRouter } from "./routes/vote";
+import { TallyRouter } from "./routes/tally";
 import session from "express-session";
 import cors from "cors";
 
@@ -21,6 +22,7 @@ app.use(
 createConnection()
   .then(async (connection) => {
     app.use("/vote", VoteRouter(connection));
+    app.use("/tally", TallyRouter(connection));
     try {
       await connection.manager.query(`
       CREATE TABLE "session" (

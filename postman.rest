@@ -14,13 +14,13 @@ Content-Type: application/json
 }
 
 ###
-POST https://boiling-reef-23922.herokuapp.com/vote
+GET https://boiling-reef-23922.herokuapp.com/vote
 Content-Type: application/json
 
 {
-    "user": "ovadia.shaloam@gmail.com",
+    "user": "susan.shaloam@gmail.com",
     "vote": {
-        "repo": "https://github.com/facebook/react",
-        "name": "React"
+        "repo": "https://github.com/vue/vue.js",
+        "name": "Vue.js"
     }
 }
