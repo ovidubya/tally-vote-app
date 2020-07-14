@@ -9,6 +9,8 @@ import cors from "cors";
 
 // const SQLiteStore = SQLiteStoreGenerator(session);
 
+import ConnectPgSimple from "connect-pg-simple";
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -27,6 +29,33 @@ app.use(express.json());
 createConnection()
   .then(async (connection) => {
     app.use("/vote", VoteRouter(connection));
+    try {
+      await connection.manager.query(`
+      CREATE TABLE "session" (
+        "sid" varchar NOT NULL COLLATE "default",
+        "sess" json NOT NULL,
+        "expire" timestamp(6) NOT NULL
+      )
+      WITH (OIDS=FALSE);
+      
+      ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+      
+      CREATE INDEX "IDX_session_expire" ON "session" ("expire");
+    `);
+    } catch (e) {
+      console.log("unable to create session table");
+      console.log(e);
+    }
+
+    app.use(
+      session({
+        store: new (ConnectPgSimple(session))(),
+        secret: "simple secret change please",
+        resave: false,
+        cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, //1 eeek
+      })
+    );
+
     app.listen(process.env.PORT || 5000, () => {
       console.log("Listening on port: " + 5000);
     });

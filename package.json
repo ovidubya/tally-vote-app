@@ -8,6 +8,7 @@
       "@types/express": "^4.17.7",
       "@types/express-session": "^1.17.0",
       "@types/node": "^8.10.61",
+      "connect-pg-simple": "^6.1.0",
       "connect-sqlite3": "^0.9.11",
       "cors": "^2.8.5",
       "express": "^4.17.1",

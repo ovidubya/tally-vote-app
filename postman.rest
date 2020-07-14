@@ -12,3 +12,15 @@ Content-Type: application/json
         "name": "React"
     }
 }
+
+###
+POST https://boiling-reef-23922.herokuapp.com/vote
+Content-Type: application/json
+
+{
+    "user": "ovadia.shaloam@gmail.com",
+    "vote": {
+        "repo": "https://github.com/facebook/react",
+        "name": "React"
+    }
+}
