@@ -22,6 +22,7 @@
       "typescript": "^3.9.6"
    },
    "scripts": {
-      "start": "ts-node src/server.ts"
+      "pre-start": "node -r dotenv/config env.js dotenv_config_path=./ormconfig.env",
+      "start": "npm run pre-start && ts-node src/server.ts"
    }
 }

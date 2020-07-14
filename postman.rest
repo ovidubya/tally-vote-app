@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ###
-GET https://boiling-reef-23922.herokuapp.com/vote
+POST https://boiling-reef-23922.herokuapp.com/vote
 Content-Type: application/json
 
 {
