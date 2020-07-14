@@ -7,8 +7,6 @@ import session from "express-session";
 import cors from "cors";
 
 const app = express();
-console.log("what is OVADIA_TEST");
-console.log(process.env.OVADIA_TEST);
 
 app.use(
   cors({
@@ -44,8 +42,6 @@ createConnection({
   },
 })
   .then(async (connection) => {
-    app.use("/vote", VoteRouter(connection));
-    app.use("/tally", TallyRouter(connection));
     try {
       await connection.manager.query(`
       CREATE TABLE "session" (
@@ -62,6 +58,16 @@ createConnection({
     } catch (e) {
       console.log("Unable to create session table");
     }
+    app.use(
+      session({
+        store: new (require("connect-pg-simple")(session))(),
+        secret: "simple secret change please",
+        resave: false,
+        cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, //1 eeek
+      })
+    );
+    app.use("/vote", VoteRouter(connection));
+    app.use("/tally", TallyRouter(connection));
 
     app.listen(process.env.PORT || 5000, () => {
       console.log("Listening on port: " + 5000);
