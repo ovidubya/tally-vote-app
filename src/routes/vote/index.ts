@@ -22,13 +22,14 @@ export const VoteRouter = (connection: Connection) => {
 
   Router.post("/", async (req, res) => {
     // @ts-ignore
-    if (req.body.user === req.session.user) {
+    if (req.body.user) {
+      // if (req.body.user === req.session.user) { ORGINAL
       res.json({
         message: "You already voted",
       });
     } else {
       // @ts-ignore
-      req.session.user = req.body.user;
+      // req.session.user = req.body.user; ORGINAL
       await userService.add(req.body);
       res.json({
         message: "ok",

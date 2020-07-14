@@ -5,24 +5,24 @@ import { VoteRouter } from "./routes/vote";
 import session from "express-session";
 import cors from "cors";
 // @ts-ignore
-import SQLiteStoreGenerator from "connect-sqlite3";
+// import SQLiteStoreGenerator from "connect-sqlite3";
 
-const SQLiteStore = SQLiteStoreGenerator(session);
+// const SQLiteStore = SQLiteStoreGenerator(session);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(
-  session({
-    store: new SQLiteStore({
-      table: "session",
-      db: "database.sqlite",
-      dir: process.cwd(),
-    }),
-    secret: "your secret",
-    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, // 1 week
-  })
-);
+// app.use(
+//   session({
+//     store: new SQLiteStore({
+//       table: "session",
+//       db: "database.sqlite",
+//       dir: process.cwd(),
+//     }),
+//     secret: "your secret",
+//     cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, // 1 week
+//   })
+// );
 
 createConnection()
   .then(async (connection) => {
