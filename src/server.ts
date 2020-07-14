@@ -11,7 +11,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://boiling-reef-23922.herokuapp.com",
+      process.env.FRONTEND_URL || "https://example.com",
       "http://localhost:3000",
     ],
     credentials: true,
@@ -56,12 +56,12 @@ createConnection({
       CREATE INDEX "IDX_session_expire" ON "session" ("expire");
     `);
     } catch (e) {
-      console.log("Unable to create session table");
+      console.log("session table already exists...continuing");
     }
     app.use(
       session({
         store: new (require("connect-pg-simple")(session))(),
-        secret: "simple secret change please",
+        secret: "SimpleSecretChangePleaseWhenDeployedForReal",
         resave: false,
         cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, //1 eeek
       })

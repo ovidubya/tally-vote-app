@@ -13,5 +13,11 @@
     ],
     "addons": [
         "heroku-postgresql"
-    ]
+    ],
+    "env": {
+        "FRONTEND_URL": {
+            "description": "The url for the frontend, needed for CORS",
+            "value": "https://change-to-your-frontend.com"
+        }
+    }
 }
