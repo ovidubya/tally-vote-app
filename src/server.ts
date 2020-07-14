@@ -4,27 +4,19 @@ import express from "express";
 import { VoteRouter } from "./routes/vote";
 import session from "express-session";
 import cors from "cors";
-// @ts-ignore
-// import SQLiteStoreGenerator from "connect-sqlite3";
-
-// const SQLiteStore = SQLiteStoreGenerator(session);
-
-import ConnectPgSimple from "connect-pg-simple";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
-// app.use(
-//   session({
-//     store: new SQLiteStore({
-//       table: "session",
-//       db: "database.sqlite",
-//       dir: process.cwd(),
-//     }),
-//     secret: "your secret",
-//     cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, // 1 week
-//   })
-// );
+app.use(
+  session({
+    store: new (require("connect-pg-simple")(session))(),
+    secret: "simple secret change please",
+    resave: false,
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, //1 eeek
+  })
+);
 
 createConnection()
   .then(async (connection) => {
@@ -46,15 +38,6 @@ createConnection()
       console.log("unable to create session table");
       console.log(e);
     }
-
-    app.use(
-      session({
-        store: new (ConnectPgSimple(session))(),
-        secret: "simple secret change please",
-        resave: false,
-        cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, //1 eeek
-      })
-    );
 
     app.listen(process.env.PORT || 5000, () => {
       console.log("Listening on port: " + 5000);

@@ -20,6 +20,8 @@ export const VoteRouter = (connection: Connection) => {
   });
 
   Router.post("/", async (req, res) => {
+    console.log("what is req.session?");
+    console.log(req.session);
     // @ts-ignore
     if (req.body.user === req.session.user) {
       res.json({
