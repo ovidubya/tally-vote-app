@@ -15,6 +15,7 @@ app.use(
     store: new (require("connect-pg-simple")(session))(),
     secret: "simple secret change please",
     resave: false,
+    saveUninitialized: true,
     cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }, //1 eeek
   })
 );
