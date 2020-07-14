@@ -1,7 +1,6 @@
 import express from "express";
-import { getManager, Connection } from "typeorm";
-import { User } from "../../../database/entity/User";
-import { Vote } from "../../../database/entity/Vote";
+import { Connection } from "typeorm";
+
 import { UserService } from "../../services/user/userService";
 
 export const VoteRouter = (connection: Connection) => {
@@ -22,14 +21,13 @@ export const VoteRouter = (connection: Connection) => {
 
   Router.post("/", async (req, res) => {
     // @ts-ignore
-    if (req.body.user) {
-      // if (req.body.user === req.session.user) { ORGINAL
+    if (req.body.user === req.session.user) {
       res.json({
         message: "You already voted",
       });
     } else {
       // @ts-ignore
-      // req.session.user = req.body.user; ORGINAL
+      req.session.user = req.body.user;
       await userService.add(req.body);
       res.json({
         message: "ok",
