@@ -30,12 +30,14 @@ app.use(
 );
 
 createConnection({
+  url:
+    "postgres://gvlsdpqkpnilmd:c3a0ec212e45c84bbaa6546f60ccd5aca06364b7fd4971617eadbedfb91cc3ea@ec2-34-206-31-217.compute-1.amazonaws.com:5432/d24fsed78tlms",
   type: "postgres",
-  host: "ec2-34-206-31-217.compute-1.amazonaws.com",
-  port: 5432,
-  username: "gvlsdpqkpnilmd",
-  password: "c3a0ec212e45c84bbaa6546f60ccd5aca06364b7fd4971617eadbedfb91cc3ea",
-  database: "d24fsed78tlms",
+  // host: "ec2-34-206-31-217.compute-1.amazonaws.com",
+  // port: 5432,
+  // username: "gvlsdpqkpnilmd",
+  // password: "c3a0ec212e45c84bbaa6546f60ccd5aca06364b7fd4971617eadbedfb91cc3ea",
+  // database: "d24fsed78tlms",
   synchronize: true,
   logging: false,
   entities: ["database/entity/**/*.ts"],
