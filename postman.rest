@@ -24,3 +24,8 @@ Content-Type: application/json
         "name": "Vue.js"
     }
 }
+
+
+###
+GET https://boiling-reef-23922.herokuapp.com/vote
+Content-Type: application/json

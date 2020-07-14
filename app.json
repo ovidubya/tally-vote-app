@@ -1,0 +1,17 @@
+{
+    "name": "Tally Vote App",
+    "description": "A barebones Node Typescript app using Express, Typeorm and Postgres",
+    "repository": "https://github.com/ovidubya/tally-vote-app",
+    "logo": "https://raw.githubusercontent.com/TypeStrong/ts-node/HEAD/logo.svg?sanitize=true",
+    "keywords": [
+        "typescript",
+        "node",
+        "express",
+        "postgres",
+        "typeorm",
+        "vote"
+    ],
+    "addons": [
+        "heroku-postgresql"
+    ]
+}
