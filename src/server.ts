@@ -29,7 +29,24 @@ app.use(
   })
 );
 
-createConnection()
+createConnection({
+  type: "postgres",
+  host: "ec2-34-206-31-217.compute-1.amazonaws.com",
+  port: 5432,
+  username: "gvlsdpqkpnilmd",
+  password: "c3a0ec212e45c84bbaa6546f60ccd5aca06364b7fd4971617eadbedfb91cc3ea",
+  database: "d24fsed78tlms",
+  synchronize: true,
+  logging: false,
+  entities: ["database/entity/**/*.ts"],
+  migrations: ["database/migration/**/*.ts"],
+  subscribers: ["database/subscriber/**/*.ts"],
+  cli: {
+    entitiesDir: "database/entity",
+    migrationsDir: "database/migration",
+    subscribersDir: "database/subscriber",
+  },
+})
   .then(async (connection) => {
     app.use("/vote", VoteRouter(connection));
     app.use("/tally", TallyRouter(connection));
